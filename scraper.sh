@@ -1,9 +1,22 @@
 #!/bin/bash
 
+wallpapers=true
+earthporn=true
+
+
 touch downloadedWallpapers.txt;
+rm wallpapers.txt
+touch wallpapers.txt
 clear;
 echo "Starting reddit RSS retrieval at `date`"
-curl --silent https://www.reddit.com/r/wallpapers/new/.rss | grep -o 'http:\/\/i\.imgur\.com\/[^&]*' > wallpapers.txt
+if [ wallpapers ]; then
+curl --silent https://www.reddit.com/r/wallpapers/new/.rss | grep -o 'http:\/\/i\.imgur\.com\/[^&]*' >> wallpapers.txt
+fi
+
+if [ earthporn  ]; then
+curl --silent https://www.reddit.com/r/earthporn/new/.rss | grep -o 'http:\/\/i\.imgur\.com\/[^&]*' >> wallpapers.txt
+fi
+
 for line in $(cat wallpapers.txt)
 do
 	if ! grep -q "$line" downloadedWallpapers.txt;
