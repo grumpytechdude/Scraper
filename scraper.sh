@@ -1,6 +1,5 @@
 #!/bin/bash
 
-osascript -e 'display notification "Looking for new Wallpapers" with title "Scrape"'
 touch downloadedWallpapers.txt;
 clear;
 echo "Starting reddit RSS retrieval at `date`"
